@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/hta/board/service/BoardServiceImpl.java=UTF-8
+encoding//src/main/java/com/hta/book/controller/BookInfoController.java=UTF-8
+encoding//src/main/java/com/hta/book/controller/BookUpdateController.java=UTF-8
+encoding//src/main/java/com/hta/member/controller/RegisterController.java=UTF-8
+encoding//src/main/java/com/hta/member/repository/Member.java=UTF-8
+encoding//src/main/java/com/hta/member/service/MemberServiceImpl.java=UTF-8
+encoding//src/main/java/mybatis/BoardManager.java=UTF-8
+encoding//src/main/java/mybatis/BookManager.java=UTF-8
+encoding//src/main/java/mybatis/MemberManager.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/board/list.jsp=UTF-8
