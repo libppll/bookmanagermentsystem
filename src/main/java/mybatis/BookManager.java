@@ -75,9 +75,11 @@ public class BookManager {
 		return list;
 	}
 	public static List samelist(String book_title) {
+		
 		List list = null;
 		SqlSession session = sqlFactory.openSession();//�꽭�뀡蹂꾨줈 sql �옉�뾽�븷�닔 �엳�룄濡� �뿴�뼱�넃�뒗寃�
-		list = session.selectList("samelist");
+		list = session.selectList("samelist", book_title);
+		
 		return list;
 	}
 }

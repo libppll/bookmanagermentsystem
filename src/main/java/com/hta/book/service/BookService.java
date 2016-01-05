@@ -22,11 +22,8 @@ public interface BookService {
 		//수정
 		public void updatebook(BookDto dto);
 		//조건검색
-	
 		public List bookrental();
 		
 		public List samelist(String book_title);
 		
-		
-			
 }

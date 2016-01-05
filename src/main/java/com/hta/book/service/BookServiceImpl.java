@@ -52,7 +52,7 @@ public class BookServiceImpl implements BookService {
 		return BookManager.bookrental();
 	}
 	public List samelist(String book_title) {
-		// TODO Auto-generated method stub
+		System.out.println(book_title);
 		return BookManager.samelist(book_title);
 	}
 

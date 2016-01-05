@@ -52,7 +52,7 @@ public class BookInputController {
 		try {
 			
 			List list = bookService.getList();
-			
+			System.out.println("input size :"+list.size());
 			mav.addObject("list", list);
 		} catch (Exception err) {
 			System.out.println("ListController:pageHandler():" + err);

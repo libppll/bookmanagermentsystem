@@ -21,7 +21,7 @@ public class BookRentalController {
 		
 		ModelAndView mav = new ModelAndView("bookrental");
 		try {
-			System.out.println("ddd");
+
 			List list = bookService.bookrental();
 			
 			mav.addObject("list", list);

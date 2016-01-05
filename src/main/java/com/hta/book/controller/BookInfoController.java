@@ -27,28 +27,19 @@ public class BookInfoController {
 
 
 
-	@RequestMapping(value="/bookinfo", method=RequestMethod.GET)
-	public ModelAndView changehandle(@RequestParam int book_num, String book_title){
+	@RequestMapping("/bookinfo")
+	public ModelAndView changehandle(@RequestParam int book_num){
 		ModelAndView mav = new ModelAndView("bookinfo");
+	
 		BookDto dto = bookService.findBynum(book_num);
-		List list = bookService.samelist(book_title);
+		
+		List list = bookService.samelist(dto.getBook_title());
+		
+		System.out.println(list.size());
 		mav.addObject("dto", dto);
+		mav.addObject("list", list);
 		return mav;
 		
 	}
-	@RequestMapping(value="/bookupdate", method=RequestMethod.POST)
-	public String submitted(@ModelAttribute BookDto dto){
-		System.out.println(dto.getBook_title());
-		try {
-			bookService.updatebook(dto);
-			
-		} catch (Exception err) {
-			System.out.println("writeErrorMessage:"+ err);
-		}
-		System.out.println(dto.getBook_num());
-		return "redirect:success.book";
-	}
-	
-	
-	
+
 }

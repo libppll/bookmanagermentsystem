@@ -70,5 +70,13 @@
 	<property name="bookService" ref="bookService"></property>
 </bean>
 
+<bean class="com.hta.book.controller.BookInfoController">
+	<property name="bookService" ref="bookService"></property>
+</bean>
+
 <bean class="com.hta.book.controller.BookConditionController"></bean>
+
+
 </beans>
+
+
