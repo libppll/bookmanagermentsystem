@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hta.book.repository.BookDto;
 import com.hta.book.repository.RentalInfoDto;
 import com.hta.book.service.BookService;
+import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
 @Controller
 public class RentalBookController {
@@ -19,11 +20,12 @@ public class RentalBookController {
 		this.bookService = bookService;
 	}
 	
-	@RequestMapping(value="/rental.book", method=RequestMethod.GET)
-	public String deletehandle(@ModelAttribute BookDto dto,  RentalInfoDto infodto){
-		System.out.println(dto.getBook_num());
+	@RequestMapping("/rental.book")
+	public String rentalhandle(@ModelAttribute int book_num, String name,  RentalInfoDto infodto){
+		System.out.println(book_num);
 		System.out.println(infodto.getMember_email());
-		bookService.bookrental(dto, infodto);
+		System.out.println(name);
+		bookService.bookrental(book_num, infodto);
 	
 		return "redirect:success.book";
 		

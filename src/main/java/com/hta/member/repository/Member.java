@@ -5,91 +5,103 @@ import java.util.Date;
 import com.hta.exception.IdPasswordNotMachingException;
 
 public class Member {
-	
-	private String email;
-	private String password;
-	private String name;
-	private String address;
-	private String phonenumber;
+	   private String member_email;       
+	   private String member_name;        
+	   private String member_phonenumber;  
+	   private String member_password;     
+	   private String member_address;      
 
 	
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getPhonenumber() {
-		return phonenumber;
-	}
-	public void setPhonenumber(String phonenumber) {
-		this.phonenumber = phonenumber;
-	}
 	public Member(){
 		
 	}
-	public Member(String email, String password, String name) {
-		
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		
-	}
-	
-	
 	
 
 
+	public Member(String member_email, String member_name, String member_phonenumber, String member_password,
+			String member_address) {
+		super();
+		this.member_email = member_email;
+		this.member_name = member_name;
+		this.member_phonenumber = member_phonenumber;
+		this.member_password = member_password;
+		this.member_address = member_address;
+	}
 
-	public String getEmail() {
-		return email;
+	
+
+
+	public String getMember_email() {
+		return member_email;
 	}
 
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
 
 
 
-	public String getPassword() {
-		return password;
+	public String getMember_name() {
+		return member_name;
 	}
 
 
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 
 
 
-	public String getName() {
-		return name;
+	public String getMember_phonenumber() {
+		return member_phonenumber;
 	}
 
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMember_phonenumber(String member_phonenumber) {
+		this.member_phonenumber = member_phonenumber;
 	}
 
 
+
+	public String getMember_password() {
+		return member_password;
+	}
+
+
+
+	public void setMember_password(String member_password) {
+		this.member_password = member_password;
+	}
+
+
+
+	public String getMember_address() {
+		return member_address;
+	}
+
+
+
+	public void setMember_address(String member_address) {
+		this.member_address = member_address;
+	}
 
 
 
 	public void changePassword(String oldPassword, String newPassword){
 		
-		if(!password.equals(oldPassword))//�뙣�뒪�썙�뱶 �씪移� �솗�씤
+		if(!member_password.equals(oldPassword))//패스워드 일치 확인
 		{
 			throw new IdPasswordNotMachingException();
 		}
-		this.password = newPassword;
+		this.member_password = newPassword;
 	}
 	
-	public boolean matchPassword(String password){ //�떎�젣 �뙣�뒪�썙�뱶媛� 留욌뒗 吏� 寃��궗
-		return this.password.equals(password);
+	public boolean matchPassword(String password){ //실제 패스워드가 맞는 지 검사
+		return this.member_password.equals(password);
 	}
 	
 	

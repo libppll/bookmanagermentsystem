@@ -4,8 +4,9 @@
 <head>
 <title>Insert title here</title>
 <script type="text/javascript">
-	function Rental(num, name){
-		location.href="rental.book";
+	function Rental(num){
+		alert("aaa")
+		location.href="rental.book?book_num="+num
 	}
 </script>
 </head>
@@ -64,7 +65,7 @@
 		<c:forEach items="${list}" var="dto" varStatus="status">
 	<tr>
 		
-		<td><input type="checkbox" name="multbook" value=${dto.book_num }/></td>
+		
 		<td>${status.count}</td>
 		<td>${dto.book_num }</td>
 		<td>${dto.book_title}</td>
@@ -72,7 +73,10 @@
 		<td>${dto.book_author}</td>
 		<td>${dto.book_isbn}</td>
 		<td>${dto.book_imdate}</td>
-		<td><input type="button" value="대여" onclick="Rental(${dto.book_num, name})"/></td>
+		<c:if test="${name!=null}">
+		<td><input type="hidden" value="${name}"/></td>
+		<td><input type="button" value="대여" onclick="Rental(${dto.book_num})"/></td>
+		</c:if>
 		</tr>
 	</c:forEach>
 		

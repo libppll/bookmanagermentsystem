@@ -11,7 +11,7 @@ public class MemberServiceImpl implements MemberService {
 
 	public void write(Member dto) throws SQLException {
 		// TODO Auto-generated method stub
-		System.out.println("dto:"+dto.getName());
+		System.out.println("dto:"+dto.getMember_email());
 		MemberManager.write2(dto);
 	}
 	

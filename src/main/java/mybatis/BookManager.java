@@ -108,10 +108,10 @@ public class BookManager {
 		list = session.selectList("condition3", dto);
 		return list;
 	}
-	public static void rentalbook(BookDto dto, RentalInfoDto infodto) {
+	public static void rentalbook(int book_num, RentalInfoDto infodto) {
 		SqlSession session = sqlFactory.openSession();
 		try{
-		session.update("rentalbook", dto);
+		session.update("rentalbook", book_num);
 		session.insert("rentalinfo", infodto);
 		session.commit();
 		}

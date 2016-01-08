@@ -69,9 +69,11 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return BookManager.condition3(dto);
 	}
-	public void bookrental(BookDto dto, RentalInfoDto infodto) {
-		BookManager.rentalbook(dto, infodto);
+	public void bookrental(int book_num, RentalInfoDto infodto) {
+		BookManager.rentalbook(book_num, infodto);
 		
 	}
+	
+	
 
 }
