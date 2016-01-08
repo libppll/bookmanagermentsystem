@@ -3,8 +3,12 @@ package com.hta.book.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+
 import com.hta.board.repository.BoardDto;
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.ConditionDto;
+import com.hta.book.repository.RentalInfoDto;
 
 
 public interface BookService {
@@ -22,8 +26,15 @@ public interface BookService {
 		//수정
 		public void updatebook(BookDto dto);
 		//조건검색
-		public List bookrental();
-		
 		public List samelist(String book_title);
+		//조건검색1
+		public List condition1(ConditionDto dto);
+		//조건검색2
+		public List condition2(ConditionDto dto);
+		//조건검색3
+		public List condition3(ConditionDto dto);
+		//책 대여
+		public void bookrental(BookDto dto, RentalInfoDto infodto);
+		
 		
 }

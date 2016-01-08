@@ -5,10 +5,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class BookDto {
 	private int book_num;          
 	private String  book_loc;
-	private String  book_status;
+	private boolean  book_status;
 	private String  book_img;
 	private String  book_imdate;
-	private String  book_res;
+	private boolean  book_res;
 	private String  book_chunggu;
 	private String  book_isbn;
 	private String  book_title;          
@@ -18,6 +18,18 @@ public class BookDto {
 	
 	
 	
+	public boolean isBook_status() {
+		return book_status;
+	}
+	public void setBook_status(boolean book_status) {
+		this.book_status = book_status;
+	}
+	public boolean isBook_res() {
+		return book_res;
+	}
+	public void setBook_res(boolean book_res) {
+		this.book_res = book_res;
+	}
 	public int getBook_num() {
 		return book_num;
 	}
@@ -30,13 +42,7 @@ public class BookDto {
 	public void setBook_loc(String book_loc) {
 		this.book_loc = book_loc;
 	}
-	public String getBook_status() {
-		return book_status;
-	}
-	public void setBook_status(String book_status) {
-		this.book_status = book_status;
-	}
-	
+
 	public String getBook_img() {
 		return book_img;
 	}
@@ -49,12 +55,7 @@ public class BookDto {
 	public void setBook_imdate(String book_imdate) {
 		this.book_imdate = book_imdate;
 	}
-	public String getBook_res() {
-		return book_res;
-	}
-	public void setBook_res(String book_res) {
-		this.book_res = book_res;
-	}
+	
 	public String getBook_chunggu() {
 		return book_chunggu;
 	}

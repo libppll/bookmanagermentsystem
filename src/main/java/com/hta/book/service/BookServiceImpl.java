@@ -3,9 +3,14 @@ package com.hta.book.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+
 import com.hta.member.repository.Member;
 import com.hta.board.repository.BoardDto;
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.ConditionDto;
+
+import com.hta.book.repository.RentalInfoDto;
 import com.hta.exception.IdPasswordNotMachingException;
 
 import mybatis.BoardManager;
@@ -47,13 +52,26 @@ public class BookServiceImpl implements BookService {
 		
 	}
 	//책 조건검색
-	public List bookrental() {
-		
-		return BookManager.bookrental();
-	}
+
 	public List samelist(String book_title) {
 		System.out.println(book_title);
 		return BookManager.samelist(book_title);
+	}
+	public List condition1(ConditionDto dto) {
+		System.out.println("serive :"+ dto.getValue() +","+dto.getItem());
+		return BookManager.condition1(dto);
+	}
+	public List condition2(ConditionDto dto) {
+		System.out.println("serive :"+ dto.getSecondvalue() +","+dto.getSeconditem());
+		return BookManager.condition2(dto);
+	}
+	public List condition3(ConditionDto dto) {
+		// TODO Auto-generated method stub
+		return BookManager.condition3(dto);
+	}
+	public void bookrental(BookDto dto, RentalInfoDto infodto) {
+		BookManager.rentalbook(dto, infodto);
+		
 	}
 
 }

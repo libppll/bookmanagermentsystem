@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <head>
 <title>Insert title here</title>
+<script type="text/javascript">
+	function Rental(num, name){
+		location.href="rental.book";
+	}
+</script>
 </head>
 <body>
 
@@ -49,7 +54,7 @@
 			</label>
 		</p>
 		
-		<input type="hidden" name="book_num" value="${dto.getBook_num()}"/>
+		
 		<br/><br/><br/><br/><br/>
 		
 		<table border="1">
@@ -67,7 +72,7 @@
 		<td>${dto.book_author}</td>
 		<td>${dto.book_isbn}</td>
 		<td>${dto.book_imdate}</td>
-		<td><input type="button" value="삭제" onclick="Delete(${dto.book_num})"/></td>
+		<td><input type="button" value="대여" onclick="Rental(${dto.book_num, name})"/></td>
 		</tr>
 	</c:forEach>
 		

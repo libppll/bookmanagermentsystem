@@ -10,6 +10,8 @@
   	<typeAlias type="com.hta.board.repository.BoardDto" alias="BoardDto"/>
   	<typeAlias type="com.hta.member.repository.Member" alias="Member"/>
   	<typeAlias type="com.hta.book.repository.BookDto" alias="BookDto"/>
+  	<typeAlias type="com.hta.book.repository.ConditionDto" alias="ConditionDto"/>
+    <typeAlias type="com.hta.book.repository.RentalInfoDto" alias="RentalInfoDto"/>
   </typeAliases>
   
   <environments default="development"><!-- 여기서 바꿀때 release를 사용할지 development를 사용할지 선택하면 된다. -->

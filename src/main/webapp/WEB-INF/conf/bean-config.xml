@@ -66,15 +66,18 @@
 	<property name="bookService" ref="bookService"></property>
 </bean>
 
-<bean class="com.hta.book.controller.BookRentalController">
-	<property name="bookService" ref="bookService"></property>
-</bean>
 
 <bean class="com.hta.book.controller.BookInfoController">
 	<property name="bookService" ref="bookService"></property>
 </bean>
 
-<bean class="com.hta.book.controller.BookConditionController"></bean>
+<bean class="com.hta.book.controller.BookConditionController">
+<property name="bookService" ref="bookService"></property>
+</bean>
+
+<bean class="com.hta.book.controller.RentalBookController">
+<property name="bookService" ref="bookService"></property>
+</bean>
 
 
 </beans>
