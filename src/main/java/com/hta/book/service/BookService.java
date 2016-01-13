@@ -34,7 +34,9 @@ public interface BookService {
 		//조건검색3
 		public List condition3(ConditionDto dto);
 		//책 대여
-		public void bookrental(int book_num, RentalInfoDto infodto);
+		public void bookrental(BookDto dto, RentalInfoDto infodto);
+		
+		public List mylist(RentalInfoDto infodto);
 		
 		
 		

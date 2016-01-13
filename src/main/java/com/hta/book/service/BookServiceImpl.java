@@ -69,9 +69,16 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return BookManager.condition3(dto);
 	}
-	public void bookrental(int book_num, RentalInfoDto infodto) {
-		BookManager.rentalbook(book_num, infodto);
+
+	public void bookrental(BookDto dto,RentalInfoDto infodto) {
+		System.out.println("rentalservice:"+infodto.getMember_email());
+		System.out.println("rentalservice:"+infodto.getBook_num());
+		BookManager.rentalbook(dto, infodto);
 		
+	}
+	public List mylist(RentalInfoDto infodto) {
+		// TODO Auto-generated method stub
+		return BookManager.mylist(infodto);
 	}
 	
 	

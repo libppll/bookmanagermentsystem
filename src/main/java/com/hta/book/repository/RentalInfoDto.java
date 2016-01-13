@@ -10,6 +10,7 @@ public class RentalInfoDto {
 	private int rental_return;
 	private int book_num;            
 	private String member_email;
+	
 	public int getRental_num() {
 		return rental_num;
 	}

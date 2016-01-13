@@ -108,10 +108,13 @@ public class BookManager {
 		list = session.selectList("condition3", dto);
 		return list;
 	}
-	public static void rentalbook(int book_num, RentalInfoDto infodto) {
+	public static void rentalbook(BookDto dto, RentalInfoDto infodto) {
+		System.out.println("rentalmanager:"+infodto.getMember_email());
+		System.out.println("rentalmanager:"+infodto.getBook_num());
 		SqlSession session = sqlFactory.openSession();
 		try{
-		session.update("rentalbook", book_num);
+		System.out.println("rentalmanager:"+dto.getBook_num());
+		session.update("rentalbook", dto);
 		session.insert("rentalinfo", infodto);
 		session.commit();
 		}
@@ -121,5 +124,11 @@ public class BookManager {
 		finally{
 		session.close();
 		}
+	}
+	public static List mylist(RentalInfoDto infodto) {
+		List list = null;
+		SqlSession session = sqlFactory.openSession();
+		list = session.selectList("mylist", infodto);
+		return list;
 	}
 }

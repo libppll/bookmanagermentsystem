@@ -48,14 +48,19 @@
   		 group by book_title
   		  having count(*) > 0
   	</select>
-  	<!-- 
-  	<update id="rentalbook" parameterMap="BookDto">
+  	  
+  	<update id="rentalbook" parameterType="BookDto">
   		update book set book_status=1 where book_num=#{book_num}
   	</update>
   	<insert id="rentalinfo" parameterType="RentalInfoDto" >
-  		insert into book(rental_date,rental_extension,rental_return,book_num,member_email) 
+  		insert into rentalinfo(rental_date,rental_extension,rental_return,book_num,member_email) 
   		value(now(),0,0,#{book_num},#{member_email}) 
-  		
   	</insert>
- 	 -->
+ 	<select id="mylist" resultType="BookDto">
+ 		select * from rentalinfo inner join book  
+ 		on rentalinfo.book_num = book.book_num where 
+ 		member_email=#{member_email} and book_status=1  
+ 		group by book_title
+  		  having count(*) > 0
+ 	</select>
   </mapper>

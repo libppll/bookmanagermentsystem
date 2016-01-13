@@ -63,7 +63,7 @@ Modernizr.load({
     <div class="large-12 twelve columns hide-for-small">
       <ul class="sf-menu">
         <li><a href="index.jsp">Home</a></li>
-        <li><a href="sample.jsp">About Us</a></li>
+        <li><a href="myrental">My Library</a></li>
         <li><a href="rental.book">도서대여</a></li>
         <li><a href="condition.book">소장자료 검색</a>
           <ul class="dropdown">
