@@ -37,6 +37,7 @@ public interface BookService {
 		public void bookrental(BookDto dto, RentalInfoDto infodto);
 		
 		public List mylist(RentalInfoDto infodto);
+
 		
 		
 		

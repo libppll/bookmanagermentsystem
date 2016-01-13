@@ -38,6 +38,7 @@ public class RentalBookController {
 		infodto.setBook_num(book_num);
 		bookService.bookrental(dto, infodto);
 		List list = bookService.mylist(infodto);
+		
 		mav.addObject("list", list);
 		
 		
@@ -47,10 +48,19 @@ public class RentalBookController {
 		
 	}
 	
-	@RequestMapping("/myrental")
-	public String mylist(){
+	@RequestMapping("/myrental.book")
+	public ModelAndView mylist(@ModelAttribute RentalInfoDto infodto, HttpSession session, HttpServletRequest req){
+		ModelAndView mav = new ModelAndView("myrental");
+		String member_email = (String)session.getAttribute("email");
+		session.setAttribute("member_email", member_email); //session에 이메일값 저장.
+		infodto.setMember_email(member_email);
 		
-		return "redirect:rental.book";
+		List list = bookService.mylist(infodto);
+		
+		mav.addObject("list", list);
+		
+		
+		return mav;
 		
 	}
 

@@ -56,8 +56,21 @@
   		insert into rentalinfo(rental_date,rental_extension,rental_return,book_num,member_email) 
   		value(now(),0,0,#{book_num},#{member_email}) 
   	</insert>
- 	<select id="mylist" resultType="BookDto">
- 		select * from rentalinfo inner join book  
+  	 <resultMap id="rentalResultMap" type="RentalInfoDto">
+        <result property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="userName" column="user_name" />
+        <collection property="hobby" column="member_id" ofType="Hobby"
+            javaType="ArrayList" resultMap="hobbyResultMap"/>
+    </resultMap>
+ 
+    <resultMap id="bookResultMap" type="BookDto">
+        <id property="book_num" column="book_num" />
+        <result property="book_title" column="book_title" />
+    </resultMap>
+  	
+ 	<select id="mylist" parameterType="RentalInfoDto" resultType="BookDto" >
+ 		select * from rentalinfo inner join book   
  		on rentalinfo.book_num = book.book_num where 
  		member_email=#{member_email} and book_status=1  
  		group by book_title

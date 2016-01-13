@@ -131,4 +131,10 @@ public class BookManager {
 		list = session.selectList("mylist", infodto);
 		return list;
 	}
+	public static List mylists(BookDto dto) {
+		List list = null;
+		SqlSession session = sqlFactory.openSession();
+		list = session.selectList("mylists", dto);
+		return list;
+	}
 }
