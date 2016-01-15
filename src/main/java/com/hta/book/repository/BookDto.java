@@ -3,19 +3,20 @@ package com.hta.book.repository;
 import org.springframework.web.multipart.MultipartFile;
 
 public class BookDto {
-	private int book_num;          
-	private String  book_loc;
-	private boolean  book_status;
-	private String  book_img;
-	private String  book_imdate;
-	private boolean  book_res;
-	private String  book_chunggu;
-	private String  book_isbn;
-	private String  book_title;          
-	private String  book_label;          
-	private String  book_author;          
-	private String  book_genre;
-	
+	private int book_num;  // 책 등록번호        
+	private String  book_loc;//소장위치
+	private boolean  book_status; // 책 대출상태
+	private String  book_img;// 책 이미지
+	private String  book_imdate;//책 입고 날짜
+	private boolean  book_res;//예약 상태
+	private String  book_chunggu;//청구기호
+	private String  book_isbn; //isbn
+	private String  book_title; //제목         
+	private String  book_label;  //출판사        
+	private String  book_author; //저자     
+	private String  book_genre; //장르
+	private String 	book_resdate; //예약일
+	private String book_resend; //예약 종료일
 	
 	
 	public boolean isBook_status() {

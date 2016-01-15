@@ -58,16 +58,13 @@
 		
 		
 		<br/><br/><br/><br/><br/>
-
+		<form action="res.book" method="get">
 		<table border="1">
 		<tr>
 		<td>순번</td><td>등록번호</td><td>제목</td>
 		<td>출판사</td><td>저자</td>
-		<td>ISBN</td><td>대여상태</td>
-		<c:if test="${dto.book_status eq false}">
-		<td></td>
-		</c:if>
-	</tr>
+		<td>ISBN</td><td>대여상태</td><td>예약상태</td>
+		</tr>
 		<c:forEach items="${list}" var="dto" varStatus="status">
 			<tr>
 				<td>${status.count}</td>
@@ -76,19 +73,30 @@
 				<td>${dto.book_label}</td>
 				<td>${dto.book_author}</td>
 				<td>${dto.book_isbn}</td>
+				<input type="hidden" value="${name}" name="member_email"/>
+				<input type="hidden" value="${dto.book_num}" name="book_num"/>
 				<c:choose>
 				<c:when test="${dto.book_status eq true}">
 					<td>대여중</td>
 				</c:when>
-				<c:when test="${dto.book_status eq false }">
-					<td>대여가능</td>
+				<c:when test="${name!=null && dto.book_status eq false}">
+				<td><input type="button" value="대여" onclick="Rental(${dto.book_num})"/></td>
+				</c:when>
+				<c:when test="${name!=null && dto.book_status eq false && dto.book_res eq true}">
+				<td>예약으로 인한 대출불가</td>
 				</c:when>
 				</c:choose>
-				<c:if test="${name!=null && dto.book_status eq false}">
-				<td><input type="button" value="대여" onclick="Rental(${dto.book_num})"/></td>
-				</c:if>
+				<c:choose>
+				<c:when test="${dto.book_res eq true}">
+					<td>예약중</td>
+				</c:when>
+				<c:when test="${name!=null && dto.book_res eq false }">
+				<td><input type="submit" value="예약"/></td>
+				</c:when>
+				</c:choose>
 			</tr>
 		</c:forEach>
 		</table>
+		</form>
 </body>
 </html>

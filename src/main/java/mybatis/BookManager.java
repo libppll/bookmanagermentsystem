@@ -16,6 +16,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.BookandRentalDto;
 import com.hta.book.repository.ConditionDto;
 import com.hta.book.repository.RentalInfoDto;
 
@@ -108,6 +109,7 @@ public class BookManager {
 		list = session.selectList("condition3", dto);
 		return list;
 	}
+	
 	public static void rentalbook(BookDto dto, RentalInfoDto infodto) {
 		System.out.println("rentalmanager:"+infodto.getMember_email());
 		System.out.println("rentalmanager:"+infodto.getBook_num());
@@ -125,16 +127,48 @@ public class BookManager {
 		session.close();
 		}
 	}
-	public static List mylist(RentalInfoDto infodto) {
+	public static List mylist(BookandRentalDto joindto) {
 		List list = null;
 		SqlSession session = sqlFactory.openSession();
-		list = session.selectList("mylist", infodto);
+		list = session.selectList("mylist", joindto);
 		return list;
 	}
-	public static List mylists(BookDto dto) {
+	public static void bookreturn(int rental_num, int book_num) {
+		SqlSession session = sqlFactory.openSession();
+		System.out.println("managerag :"+ rental_num);
+		try{
+		session.update("bookreturnupdate", book_num);
+		session.delete("bookreturn", rental_num);
+		session.commit();
+		}
+		catch(SqlSessionException err){
+			System.out.println("returnbook:"+ err);
+		}
+		finally{
+		session.close();
+		}
+	}
+	public static void bookres(int book_num) {
+		SqlSession session = sqlFactory.openSession();
+		session.update("bookresupdate", book_num);
+		session.commit();
+	}
+	public static List myreslist(BookandRentalDto joindto) {
 		List list = null;
 		SqlSession session = sqlFactory.openSession();
-		list = session.selectList("mylists", dto);
+		list = session.selectList("myreslist", joindto);
 		return list;
 	}
+	public static void bookextension(int book_num) {
+		SqlSession session = sqlFactory.openSession();
+		session.update("bookextension", book_num);
+		session.commit();
+		
+	}
+	public static void bookrescancel(int book_num) {
+		SqlSession session = sqlFactory.openSession();
+		session.update("bookrescancel", book_num);
+		session.commit();
+	}
+	
 }

@@ -5,24 +5,62 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<script type="text/javascript">
+	//연장처리
+	function Extension(num){
+		location.href="extension.book?book_num="+num;
+	}
+	//예약 취소처리
+	function Cancel(num){
+		alert("ddd")
+		location.href="rescan.book?book_num="+num;
+	}
+</script>
 </head>
 <body>
 <h3>대출 내역</h3>
+<form action="return.book" method="get">
 <table border="1" class="rental">
 	 
 	<tr>
 		<td>번호</td><td>등록번호</td><td>자료명</td><td>대출일</td>
-		<td>반납예정일</td><td>연체일</td><td>연체료</td><td>연장</td>
+		<td>반납예정일</td><td>연체일</td><td>연체료</td>
+		<td>연장</td><td>반납</td>
 	</tr>
+	
 	<c:forEach items="${list}" var="dto" varStatus="status">
 	<tr>
 		<td>${status.count }</td>
 		<td>${dto.book_num}</td>
 		<td>${dto.book_title}</td>
+		<td>${dto.rental_date }</td>
+		<td>${dto.renbtal_returndate}</td>
 		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>${dto.return_sal }</td>
+		<input type="hidden" name="book_num" value="${dto.book_num}">
+		<input type="hidden" name="rental_num" value="${dto.rental_num}">
+		<td><input type="button" value="연장" onclick="Extension(${dto.book_num})"></td>
+		<td><input type="submit" value="반납" ></td>
+	</tr>
+	</c:forEach>
+</table>
+</form>
+<br/><br/>
+<h3>예약 내역</h3>
+<table border="1" class="rental">
+	 
+	<tr>
+		<td>번호</td><td>자료명</td><td>예약일</td>
+		<td>예약만료일</td><td>취소</td>
+	</tr>
+	
+	<c:forEach items="${lists}" var="dto" varStatus="status">
+	<tr>
+		<td>${status.count }</td>
+		<td>${dto.book_title}</td>
+		<td>${dto.book_resdate}</td>
+		<td>${dto.book_resend}</td>
+		<td><input type="button" value="취소" onclick="Cancel(${dto.book_num})"></td>
 	</tr>
 	</c:forEach>
 </table>

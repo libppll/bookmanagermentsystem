@@ -53,27 +53,45 @@
   		update book set book_status=1 where book_num=#{book_num}
   	</update>
   	<insert id="rentalinfo" parameterType="RentalInfoDto" >
-  		insert into rentalinfo(rental_date,rental_extension,rental_return,book_num,member_email) 
-  		value(now(),0,0,#{book_num},#{member_email}) 
+  		insert into rentalinfo(rental_date,renbtal_returndate,rental_extension,rental_return,book_num,member_email) 
+  		value(now(), NOW() + INTERVAL 3 DAY  ,0,0,#{book_num},#{member_email}) 
   	</insert>
-  	 <resultMap id="rentalResultMap" type="RentalInfoDto">
-        <result property="id" column="id" />
-        <result property="userId" column="user_id" />
-        <result property="userName" column="user_name" />
-        <collection property="hobby" column="member_id" ofType="Hobby"
-            javaType="ArrayList" resultMap="hobbyResultMap"/>
-    </resultMap>
- 
-    <resultMap id="bookResultMap" type="BookDto">
-        <id property="book_num" column="book_num" />
-        <result property="book_title" column="book_title" />
-    </resultMap>
+  
   	
- 	<select id="mylist" parameterType="RentalInfoDto" resultType="BookDto" >
+ 	<select id="mylist" resultType="BookandRentalDto" >
  		select * from rentalinfo inner join book   
  		on rentalinfo.book_num = book.book_num where 
  		member_email=#{member_email} and book_status=1  
  		group by book_title
   		  having count(*) > 0
  	</select>
+ 	
+ 	<delete id="bookreturn" parameterType="int" >
+  		delete from rentalinfo where rental_num=#{rental_num}
+  	</delete>
+  	<update id="bookreturnupdate" parameterType="BookDto">
+  		update book set book_status=0 where book_num=#{book_num}
+  	</update>
+  	<update id="bookresupdate" parameterType="BookDto">
+  		update book set book_res=1, book_resdate=now(), book_resend=now() + INTERVAL 2 DAY
+  		 where book_num=#{book_num}
+  	</update>
+  	<select id="myreslist" resultType="BookandRentalDto" >
+ 		select * from rentalinfo inner join book   
+ 		on rentalinfo.book_num = book.book_num where 
+ 		member_email=#{member_email} and book_res=1  
+ 		group by book_title
+  		  having count(*) > 0
+ 	</select>
+ 	
+ 	<update id="bookrescancel" parameterType="BookandRentalDto">
+  		update book set book_res=0, book_resdate=0, book_resend=0
+  		 where book_num=#{book_num}
+  	</update>
+  	
+  	<update id="bookextension" parameterType="BookandRentalDto">
+  		update book set rental_extension=1, renbtal_returndate=NOW() + INTERVAL 3 DAY
+  		 where book_num=#{book_num}
+  	</update>
+   
   </mapper>

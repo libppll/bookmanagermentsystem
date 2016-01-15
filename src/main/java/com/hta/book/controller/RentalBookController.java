@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.BookandRentalDto;
 import com.hta.book.repository.RentalInfoDto;
 import com.hta.book.service.BookService;
 import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
@@ -27,8 +28,8 @@ public class RentalBookController {
 	}
 	
 	@RequestMapping("/rental.book")
-	public  ModelAndView rentalhandle(@ModelAttribute BookDto dto, RentalInfoDto infodto, HttpSession session, HttpServletRequest req){
-		ModelAndView mav = new ModelAndView("myrental");
+	public  ModelAndView rentalhandle(@ModelAttribute RentalInfoDto infodto, BookDto dto, BookandRentalDto joindto, HttpSession session, HttpServletRequest req){
+		ModelAndView mav = new ModelAndView("redirect:myrental.book");
 		String booknum = req.getParameter("book_num");
 		int book_num = Integer.parseInt(booknum);
 		System.out.println("rentalcontroller:"+book_num);
@@ -37,11 +38,7 @@ public class RentalBookController {
 		infodto.setMember_email(member_email);
 		infodto.setBook_num(book_num);
 		bookService.bookrental(dto, infodto);
-		List list = bookService.mylist(infodto);
-		
-		mav.addObject("list", list);
-		
-		
+
 		
 		return mav;
 		
@@ -49,16 +46,16 @@ public class RentalBookController {
 	}
 	
 	@RequestMapping("/myrental.book")
-	public ModelAndView mylist(@ModelAttribute RentalInfoDto infodto, HttpSession session, HttpServletRequest req){
+	public ModelAndView mylist(@ModelAttribute BookandRentalDto joindto, HttpSession session, HttpServletRequest req){
 		ModelAndView mav = new ModelAndView("myrental");
 		String member_email = (String)session.getAttribute("email");
 		session.setAttribute("member_email", member_email); //session에 이메일값 저장.
-		infodto.setMember_email(member_email);
+		joindto.setMember_email(member_email);
 		
-		List list = bookService.mylist(infodto);
-		
+		List list = bookService.mylist(joindto);
+		List lists = bookService.myreslist(joindto);
 		mav.addObject("list", list);
-		
+		mav.addObject("lists", lists);
 		
 		return mav;
 		

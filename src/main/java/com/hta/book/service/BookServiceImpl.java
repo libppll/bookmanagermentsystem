@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import com.hta.member.repository.Member;
 import com.hta.board.repository.BoardDto;
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.BookandRentalDto;
 import com.hta.book.repository.ConditionDto;
 
 import com.hta.book.repository.RentalInfoDto;
@@ -76,9 +77,30 @@ public class BookServiceImpl implements BookService {
 		BookManager.rentalbook(dto, infodto);
 		
 	}
-	public List mylist(RentalInfoDto infodto) {
+	public List mylist( BookandRentalDto joindto) {
 		// TODO Auto-generated method stub
-		return BookManager.mylist(infodto);
+		return BookManager.mylist(joindto);
+	}
+	public void bookreturn(int rental_num, int book_num) {
+		BookManager.bookreturn(rental_num, book_num);
+		
+	}
+	public void bookres(int book_num) {
+		BookManager.bookres(book_num);
+		
+	}
+	public List myreslist(BookandRentalDto joindto) {
+		// TODO Auto-generated method stub
+		return BookManager.myreslist(joindto);
+	}
+	
+	public void bookextension(int book_num) {
+		BookManager.bookextension(book_num);
+		
+	}
+	public void bookrescancel(int book_num) {
+		BookManager.bookrescancel(book_num);
+		
 	}
 	
 	

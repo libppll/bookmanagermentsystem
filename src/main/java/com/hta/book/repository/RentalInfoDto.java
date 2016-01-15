@@ -3,14 +3,30 @@ package com.hta.book.repository;
 public class RentalInfoDto {
 	private int rental_num;
     private String rental_date;
-	private String renbtal_returndate;
-	private int return_sal;
-	private int rental_extension;
-	private int rental_res1;
-	private int rental_return;
+	private String renbtal_returndate; //반납예정일
+	private int return_sal;//연체료
+	private int rental_extension;//예약상태
+	private int rental_res1;//예약자
+	private int rental_return;//반납상태
 	private int book_num;            
 	private String member_email;
+    private String overdate;   //연체일
+    private String returndate; //반납일
 	
+    
+    
+	public String getOverdate() {
+		return overdate;
+	}
+	public void setOverdate(String overdate) {
+		this.overdate = overdate;
+	}
+	public String getReturndate() {
+		return returndate;
+	}
+	public void setReturndate(String returndate) {
+		this.returndate = returndate;
+	}
 	public int getRental_num() {
 		return rental_num;
 	}
