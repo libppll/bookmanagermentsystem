@@ -22,11 +22,12 @@ public class BookResController {
 	}
 	
 	@RequestMapping(value="/res.book", method=RequestMethod.GET)
-	public String deletehandle(int book_num){
+	public String reshandle(@ModelAttribute BookandRentalDto infodto, String name, int book_num){
 		System.out.println(book_num);
 	
-		
-		bookService.bookres(book_num);
+		infodto.setMember_email(name);
+		infodto.setBook_num(book_num);
+		bookService.bookres(book_num, infodto);
 	
 		return "redirect:myrental.book";
 		

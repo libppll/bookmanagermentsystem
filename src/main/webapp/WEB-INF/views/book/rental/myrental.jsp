@@ -8,6 +8,7 @@
 <script type="text/javascript">
 	//연장처리
 	function Extension(num){
+		alert("ddd")
 		location.href="extension.book?book_num="+num;
 	}
 	//예약 취소처리
@@ -33,7 +34,7 @@
 		<td>${status.count }</td>
 		<td>${dto.book_num}</td>
 		<td>${dto.book_title}</td>
-		<td>${dto.rental_date }</td>
+		<td>${dto.rental_date}</td>
 		<td>${dto.renbtal_returndate}</td>
 		<td></td>
 		<td>${dto.return_sal }</td>

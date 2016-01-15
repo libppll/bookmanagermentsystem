@@ -15,10 +15,7 @@ public class BookDto {
 	private String  book_label;  //출판사        
 	private String  book_author; //저자     
 	private String  book_genre; //장르
-	private String 	book_resdate; //예약일
-	private String book_resend; //예약 종료일
-	
-	
+
 	public boolean isBook_status() {
 		return book_status;
 	}

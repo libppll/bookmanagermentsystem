@@ -85,8 +85,8 @@ public class BookServiceImpl implements BookService {
 		BookManager.bookreturn(rental_num, book_num);
 		
 	}
-	public void bookres(int book_num) {
-		BookManager.bookres(book_num);
+	public void bookres(int book_num, BookandRentalDto joindto) {
+		BookManager.bookres(book_num, joindto);
 		
 	}
 	public List myreslist(BookandRentalDto joindto) {

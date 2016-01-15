@@ -41,7 +41,7 @@ public interface BookService {
 		
 		public void bookreturn(int rental_num, int book_num);
 		
-		public void bookres(int book_num);
+		public void bookres(int book_num, BookandRentalDto joindto);
 		
 		public List myreslist(BookandRentalDto joindto);
 		

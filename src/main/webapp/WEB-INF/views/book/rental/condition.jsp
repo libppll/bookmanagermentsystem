@@ -50,7 +50,7 @@
 		<option value="book_chunggu">청구기호</option>
 		<option value="book_isbn">ISBN</option>
 	</select>
-	<input type="text3" name="thirdvalue" id="value1" title="검색어입력" />
+	<input type="text" name="thirdvalue" id="value1" title="검색어입력" />
 	<br/>
 	<input type="submit" value="검색"/>
 </form>

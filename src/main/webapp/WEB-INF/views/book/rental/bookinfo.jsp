@@ -79,10 +79,10 @@
 				<c:when test="${dto.book_status eq true}">
 					<td>대여중</td>
 				</c:when>
-				<c:when test="${name!=null && dto.book_status eq false}">
+				<c:when test="${name!=null && dto.book_status eq false && dto.book_res eq false}">
 				<td><input type="button" value="대여" onclick="Rental(${dto.book_num})"/></td>
 				</c:when>
-				<c:when test="${name!=null && dto.book_status eq false && dto.book_res eq true}">
+				<c:when test="${dto.book_status eq false && dto.book_res eq true}">
 				<td>예약으로 인한 대출불가</td>
 				</c:when>
 				</c:choose>

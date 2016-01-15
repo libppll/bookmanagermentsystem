@@ -148,13 +148,23 @@ public class BookManager {
 		session.close();
 		}
 	}
-	public static void bookres(int book_num) {
+	public static void bookres(int book_num, BookandRentalDto joindto) {
 		SqlSession session = sqlFactory.openSession();
-		session.update("bookresupdate", book_num);
-		session.commit();
+		try{
+			session.update("bookresupdate", book_num);
+			session.insert("resinfo", joindto);
+			session.commit();
+			}
+			catch(SqlSessionException err){
+				System.out.println("rentalbook:"+ err);
+			}
+			finally{
+			session.close();
+			}
 	}
 	public static List myreslist(BookandRentalDto joindto) {
 		List list = null;
+		System.out.println("예약 :"+joindto.getMember_email());
 		SqlSession session = sqlFactory.openSession();
 		list = session.selectList("myreslist", joindto);
 		return list;
