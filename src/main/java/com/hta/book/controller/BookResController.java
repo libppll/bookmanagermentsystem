@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.BookResDto;
 import com.hta.book.repository.BookandRentalDto;
 import com.hta.book.service.BookService;
 
@@ -22,12 +23,15 @@ public class BookResController {
 	}
 	
 	@RequestMapping(value="/res.book", method=RequestMethod.GET)
-	public String reshandle(@ModelAttribute BookandRentalDto infodto, String name, int book_num){
+	public String reshandle(@ModelAttribute BookResDto resdto, HttpSession session, int book_num){
 		System.out.println(book_num);
-	
-		infodto.setMember_email(name);
-		infodto.setBook_num(book_num);
-		bookService.bookres(book_num, infodto);
+
+		String member_email = (String)session.getAttribute("email");
+		session.setAttribute("member_email", member_email);
+		System.out.println("¿¹¾à:"+member_email);
+		resdto.setMember_email(member_email);
+		resdto.setBook_num(book_num);
+		bookService.bookres(book_num, resdto);
 	
 		return "redirect:myrental.book";
 		

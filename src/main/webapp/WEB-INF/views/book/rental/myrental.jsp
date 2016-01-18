@@ -6,10 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <script type="text/javascript">
+	
 	//연장처리
 	function Extension(num){
-		alert("ddd")
+		var i= document.getElementById("overdate").value;
+		if(i == 0 || i == null){	
 		location.href="extension.book?book_num="+num;
+		}
+		else{
+			alert("연체로 인한 연장 불가")
+		
+		}
 	}
 	//예약 취소처리
 	function Cancel(num){
@@ -36,10 +43,11 @@
 		<td>${dto.book_title}</td>
 		<td>${dto.rental_date}</td>
 		<td>${dto.renbtal_returndate}</td>
-		<td></td>
+		<td>${dto.overdate }일</td>
 		<td>${dto.return_sal }</td>
 		<input type="hidden" name="book_num" value="${dto.book_num}">
 		<input type="hidden" name="rental_num" value="${dto.rental_num}">
+		<input type="hidden" id="overdate" value="${dto.getOverdate()}">
 		<td><input type="button" value="연장" onclick="Extension(${dto.book_num})"></td>
 		<td><input type="submit" value="반납" ></td>
 	</tr>
@@ -48,6 +56,7 @@
 </form>
 <br/><br/>
 <h3>예약 내역</h3>
+<form action="rescan.book" method="get">
 <table border="1" class="rental">
 	 
 	<tr>
@@ -59,9 +68,12 @@
 	<tr>
 		<td>${status.count }</td>
 		<td>${dto.book_title}</td>
-		<td>${dto.book_resdate}</td>
-		<td>${dto.book_resend}</td>
-		<td><input type="button" value="취소" onclick="Cancel(${dto.book_num})"></td>
+		<td>${dto.res_date}</td>
+		<td>${dto.res_end}</td>
+		<input type="hidden" name="res_num" value="${dto.res_num}">
+		<input type="hidden" name="book_num" value="${dto.book_num}">
+		
+		<td><input type="submit" value="취소"></td>
 	</tr>
 	</c:forEach>
 </table>

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import com.hta.member.repository.Member;
 import com.hta.board.repository.BoardDto;
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.BookResDto;
 import com.hta.book.repository.BookandRentalDto;
 import com.hta.book.repository.ConditionDto;
 
@@ -85,8 +86,8 @@ public class BookServiceImpl implements BookService {
 		BookManager.bookreturn(rental_num, book_num);
 		
 	}
-	public void bookres(int book_num, BookandRentalDto joindto) {
-		BookManager.bookres(book_num, joindto);
+	public void bookres(int book_num, BookResDto resdto) {
+		BookManager.bookres(book_num, resdto);
 		
 	}
 	public List myreslist(BookandRentalDto joindto) {
@@ -98,8 +99,8 @@ public class BookServiceImpl implements BookService {
 		BookManager.bookextension(book_num);
 		
 	}
-	public void bookrescancel(int book_num) {
-		BookManager.bookrescancel(book_num);
+	public void bookrescancel(int book_num, int res_num) {
+		BookManager.bookrescancel(book_num, res_num);
 		
 	}
 	

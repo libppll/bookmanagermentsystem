@@ -16,6 +16,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.BookResDto;
 import com.hta.book.repository.BookandRentalDto;
 import com.hta.book.repository.ConditionDto;
 import com.hta.book.repository.RentalInfoDto;
@@ -75,7 +76,7 @@ public class BookManager {
 		session.commit();
 		
 	}
-
+	
 	public static List samelist(String book_title) {
 		
 		List list = null;
@@ -84,6 +85,8 @@ public class BookManager {
 		
 		return list;
 	}
+	
+	//조건검색
 	public static List condition1(ConditionDto dto) {
 		List list = null;
 		
@@ -97,12 +100,14 @@ public class BookManager {
 		
 		return list;
 	}
+	//조건검색
 	public static List condition2(ConditionDto dto) {
 		List list = null;
 		SqlSession session = sqlFactory.openSession();//�꽭�뀡蹂꾨줈 sql �옉�뾽�븷�닔 �엳�룄濡� �뿴�뼱�넃�뒗寃�
 		list = session.selectList("condition2", dto);
 		return list;
 	}
+	//조건검색
 	public static List condition3(ConditionDto dto) {
 		List list = null;
 		SqlSession session = sqlFactory.openSession();//�꽭�뀡蹂꾨줈 sql �옉�뾽�븷�닔 �엳�룄濡� �뿴�뼱�넃�뒗寃�
@@ -110,6 +115,7 @@ public class BookManager {
 		return list;
 	}
 	
+	//책 대여
 	public static void rentalbook(BookDto dto, RentalInfoDto infodto) {
 		System.out.println("rentalmanager:"+infodto.getMember_email());
 		System.out.println("rentalmanager:"+infodto.getBook_num());
@@ -133,6 +139,8 @@ public class BookManager {
 		list = session.selectList("mylist", joindto);
 		return list;
 	}
+	
+	//책 반납
 	public static void bookreturn(int rental_num, int book_num) {
 		SqlSession session = sqlFactory.openSession();
 		System.out.println("managerag :"+ rental_num);
@@ -148,11 +156,16 @@ public class BookManager {
 		session.close();
 		}
 	}
-	public static void bookres(int book_num, BookandRentalDto joindto) {
+	
+	//책예약
+	public static void bookres(int book_num, BookResDto resdto) {
+
+		System.out.println("resmanager:"+resdto.getMember_email());
+		System.out.println("resmanager:"+resdto.getBook_num());
 		SqlSession session = sqlFactory.openSession();
 		try{
+			session.insert("resinfo", resdto);
 			session.update("bookresupdate", book_num);
-			session.insert("resinfo", joindto);
 			session.commit();
 			}
 			catch(SqlSessionException err){
@@ -162,6 +175,7 @@ public class BookManager {
 			session.close();
 			}
 	}
+	
 	public static List myreslist(BookandRentalDto joindto) {
 		List list = null;
 		System.out.println("예약 :"+joindto.getMember_email());
@@ -175,10 +189,21 @@ public class BookManager {
 		session.commit();
 		
 	}
-	public static void bookrescancel(int book_num) {
+	
+	public static void bookrescancel(int book_num, int res_num) {
+		
 		SqlSession session = sqlFactory.openSession();
-		session.update("bookrescancel", book_num);
+		try{
+		session.delete("bookrescancel", res_num);
+		session.update("bookresend", book_num);
 		session.commit();
+		}
+		catch(SqlSessionException err){
+			System.out.println("rescancelbook:"+ err);
+		}
+		finally{
+		session.close();
+		}
 	}
 	
 }

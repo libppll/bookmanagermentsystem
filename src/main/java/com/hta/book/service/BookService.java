@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.hta.board.repository.BoardDto;
 import com.hta.book.repository.BookDto;
+import com.hta.book.repository.BookResDto;
 import com.hta.book.repository.BookandRentalDto;
 import com.hta.book.repository.ConditionDto;
 import com.hta.book.repository.RentalInfoDto;
@@ -41,13 +42,13 @@ public interface BookService {
 		
 		public void bookreturn(int rental_num, int book_num);
 		
-		public void bookres(int book_num, BookandRentalDto joindto);
+		public void bookres(int book_num, BookResDto resdto);
 		
 		public List myreslist(BookandRentalDto joindto);
 		
 		public void bookextension(int book_num);
 		
-		public void bookrescancel(int book_num);
+		public void bookrescancel(int book_num, int res_num);
 
 		
 		

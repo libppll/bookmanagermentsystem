@@ -23,31 +23,31 @@ public class BookandRentalDto {
 	private String member_email;
 	private int overdate;   //연체일
 	private String returndate; //반납일
-	private String book_resdate; //예약일
-	private String book_resend; //예약 종료일
 	private int res_num; //예약번호
+	private String res_date; //예약일 		
+    private String res_end;// 예약 종료일
+    
 	
-	
+    
+    
+	public String getRes_date() {
+		return res_date;
+	}
+	public void setRes_date(String res_date) {
+		this.res_date = res_date;
+	}
+	public String getRes_end() {
+		return res_end;
+	}
+	public void setRes_end(String res_end) {
+		this.res_end = res_end;
+	}
 	public int getRes_num() {
 		return res_num;
 	}
 	public void setRes_num(int res_num) {
 		this.res_num = res_num;
 	}
-	public String getBook_resend() {
-		return book_resend;
-	}
-	public void setBook_resend(String book_resend) {
-		this.book_resend = book_resend;
-	}
-	public String getBook_resdate() {
-		return book_resdate;
-	}
-	
-	public void setBook_resdate(String book_resdate) {
-		this.book_resdate = book_resdate;
-	}
-	
 	public int getOverdate() {
 		return overdate;
 	}
