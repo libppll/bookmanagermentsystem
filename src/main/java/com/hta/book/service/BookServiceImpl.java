@@ -82,8 +82,8 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return BookManager.mylist(joindto);
 	}
-	public void bookreturn(int rental_num, int book_num) {
-		BookManager.bookreturn(rental_num, book_num);
+	public void bookreturn(int book_num) {
+		BookManager.bookreturn(book_num);
 		
 	}
 	public void bookres(int book_num, BookResDto resdto) {
@@ -99,10 +99,19 @@ public class BookServiceImpl implements BookService {
 		BookManager.bookextension(book_num);
 		
 	}
-	public void bookrescancel(int book_num, int res_num) {
-		BookManager.bookrescancel(book_num, res_num);
+	public void bookrescancel(int book_num) {
+		BookManager.bookrescancel(book_num);
 		
 	}
+	public void bookrestodaycancel(int book_num) {
+		BookManager.bookrestodaycancel(book_num);
+		
+	}
+	public List rantalinfoList(){
+		// TODO Auto-generated method stub
+		return BookManager.rantalinfolist();
+	}
+	
 	
 	
 	

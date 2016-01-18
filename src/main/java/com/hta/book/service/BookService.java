@@ -40,7 +40,7 @@ public interface BookService {
 		
 		public List mylist(BookandRentalDto joindto);
 		
-		public void bookreturn(int rental_num, int book_num);
+		public void bookreturn(int book_num);
 		
 		public void bookres(int book_num, BookResDto resdto);
 		
@@ -48,7 +48,11 @@ public interface BookService {
 		
 		public void bookextension(int book_num);
 		
-		public void bookrescancel(int book_num, int res_num);
+		public void bookrescancel(int book_num);
+		
+		public void bookrestodaycancel(int book_num);
+		
+		public List rantalinfoList();
 
 		
 		

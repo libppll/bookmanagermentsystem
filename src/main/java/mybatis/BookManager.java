@@ -141,12 +141,12 @@ public class BookManager {
 	}
 	
 	//책 반납
-	public static void bookreturn(int rental_num, int book_num) {
+	public static void bookreturn(int book_num) {
 		SqlSession session = sqlFactory.openSession();
-		System.out.println("managerag :"+ rental_num);
+		System.out.println("managerag :"+ book_num);
 		try{
 		session.update("bookreturnupdate", book_num);
-		session.delete("bookreturn", rental_num);
+		session.delete("bookreturn", book_num);
 		session.commit();
 		}
 		catch(SqlSessionException err){
@@ -190,11 +190,11 @@ public class BookManager {
 		
 	}
 	
-	public static void bookrescancel(int book_num, int res_num) {
+	public static void bookrescancel(int book_num) {
 		
 		SqlSession session = sqlFactory.openSession();
 		try{
-		session.delete("bookrescancel", res_num);
+		session.delete("bookrescancel", book_num);
 		session.update("bookresend", book_num);
 		session.commit();
 		}
@@ -204,6 +204,28 @@ public class BookManager {
 		finally{
 		session.close();
 		}
+	}
+	public static void bookrestodaycancel(int book_num) {
+		SqlSession session = sqlFactory.openSession();
+		try{
+		session.delete("bookrescancel", book_num);
+		session.update("bookresend", book_num);
+		session.commit();
+		}
+		catch(SqlSessionException err){
+			System.out.println("rescancelbook:"+ err);
+		}
+		finally{
+		session.close();
+		}
+		
+	}
+	public static List rantalinfolist() {
+		List list = null;
+
+		SqlSession session = sqlFactory.openSession();
+		list = session.selectList("rentallist");
+		return list;
 	}
 	
 }

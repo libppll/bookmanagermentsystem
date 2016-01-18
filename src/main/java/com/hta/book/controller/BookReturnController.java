@@ -19,10 +19,9 @@ public class BookReturnController {
 	}
 	
 	@RequestMapping(value="/return.book", method=RequestMethod.GET)
-	public String deletehandle(int rental_num, int book_num){
-		System.out.println(rental_num);
+	public String deletehandle(int book_num){
 		System.out.println("booknum:"+ book_num);
-		bookService.bookreturn(rental_num, book_num);
+		bookService.bookreturn(book_num);
 	
 		return "redirect:myrental.book";
 		

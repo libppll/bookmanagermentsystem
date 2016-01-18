@@ -59,16 +59,19 @@
   
   	
  	<select id="mylist" resultType="BookandRentalDto" >
- 		select *
+ 		select book.book_num, book.book_title,
+		rentalinfo.rental_date, rentalinfo.renbtal_returndate,
+		GREATEST(day(now())-DAY(rentalinfo.renbtal_returndate), 0) overdate,
+        GREATEST(500*(day(now())-DAY(rentalinfo.renbtal_returndate)), 0) return_sal
  		from rentalinfo inner join book   
  		on rentalinfo.book_num = book.book_num where 
- 		member_email='aaa' and book_status=1  
+ 		member_email=#{member_email} and book_status=1  
  		group by book_title
   		  having count(*) > 0;
  	</select>
  	
  	<delete id="bookreturn" parameterType="int" >
-  		delete from rentalinfo where rental_num=#{rental_num}
+  		delete from rentalinfo where book_num=#{book_num}
   	</delete>
   	
   	<update id="bookreturnupdate" parameterType="BookDto">
@@ -94,7 +97,7 @@
  	</select>
  	
  	<delete id="bookrescancel" parameterType="int">
-  		delete from bookres where res_num=#{res_num} 
+  		delete from bookres where book_num=#{book_num}
   	</delete>
  	 <update id="bookresend" parameterType="BookDto">
   		update book set book_res=0
@@ -104,5 +107,13 @@
   	<update id="bookextension" parameterType="RentalInfoDto">
   		update rentalinfo set rental_extension=1, renbtal_returndate=now()+interval+3 day where book_num=#{book_num}
   	</update>
+  	
+  	<select id="rentallist" resultType="BookandRentalDto">
+  		select * from rentalinfo 
+inner join book on
+ rentalinfo.book_num = book.book_num 
+ GROUP BY book_title
+HAVING COUNT(*) > 0 order by renbtal_returndate asc
+  	</select>
    	
   </mapper>

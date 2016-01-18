@@ -22,18 +22,15 @@ public class BookResDeleteController {
 		this.bookService = bookService;
 	}
 	
-	@RequestMapping(value="/res.book", method=RequestMethod.GET)
-	public String reshandle(@ModelAttribute BookResDto resdto, HttpSession session, int book_num){
-		System.out.println(book_num);
+	@RequestMapping(value="/resbookcancel.book", method=RequestMethod.GET)
+	public String reshandle(){
+		return null;
+		
 
-		String member_email = (String)session.getAttribute("email");
-		session.setAttribute("member_email", member_email);
-		System.out.println("¿¹¾à:"+member_email);
-		resdto.setMember_email(member_email);
-		resdto.setBook_num(book_num);
-		bookService.bookres(book_num, resdto);
 	
-		return "redirect:myrental.book";
+	
+		
+		
 		
 	}
 	

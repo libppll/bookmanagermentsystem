@@ -66,7 +66,7 @@ Modernizr.load({
         <li><a href="myrental.book">My Library</a></li>
         <li><a href="rental.book">도서대여</a></li>
         <li><a href="condition.book">소장자료 검색</a>
-        <li><a href="resbookcancel.book">소장자료 검색</a>
+        <li><a href="manager.book">관리자</a>
           <ul class="dropdown">
             <li><a href="#">도서</a>
               <ul>

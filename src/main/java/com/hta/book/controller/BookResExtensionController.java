@@ -28,11 +28,11 @@ public class BookResExtensionController {
 	}
 	
 	@RequestMapping("/rescan.book")
-	public String reshandle(int book_num, int res_num){
+	public String reshandle(int book_num){
 		System.out.println(book_num);
-		System.out.println("예약 취소:"+res_num );
 		
-		bookService.bookrescancel(book_num, res_num);
+		
+		bookService.bookrescancel(book_num);
 	
 		return "redirect:myrental.book";
 		

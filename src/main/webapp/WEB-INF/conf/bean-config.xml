@@ -91,6 +91,10 @@
 <property name="bookService" ref="bookService"></property>
 </bean>
 
+<bean class="com.hta.book.controller.BookManagerController">
+<property name="bookService" ref="bookService"></property>
+</bean>
+
 </beans>
 
 
