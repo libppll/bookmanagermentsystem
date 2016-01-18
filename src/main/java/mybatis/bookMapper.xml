@@ -54,7 +54,7 @@
   	</update>
   	<insert id="rentalinfo" parameterType="RentalInfoDto" >
   		insert into rentalinfo(rental_date,renbtal_returndate,rental_extension,rental_return,book_num,member_email) 
-  		value(now(), NOW() + INTERVAL 3 DAY ,0,0,#{book_num},#{member_email}) 
+  		value(now(), NOW() - INTERVAL 3 DAY ,0,0,#{book_num},#{member_email}) 
   	</insert>
   
   	
@@ -62,9 +62,9 @@
  		select *
  		from rentalinfo inner join book   
  		on rentalinfo.book_num = book.book_num where 
- 		member_email=#{member_email} and book_status=1  
+ 		member_email='aaa' and book_status=1  
  		group by book_title
-  		  having count(*) > 0
+  		  having count(*) > 0;
  	</select>
  	
  	<delete id="bookreturn" parameterType="int" >
