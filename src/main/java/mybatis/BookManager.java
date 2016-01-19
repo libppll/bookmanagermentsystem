@@ -76,7 +76,7 @@ public class BookManager {
 		session.commit();
 		
 	}
-	
+	//같은책 출력
 	public static List samelist(String book_title) {
 		
 		List list = null;
@@ -86,7 +86,7 @@ public class BookManager {
 		return list;
 	}
 	
-	//조건검색
+	//조건검색1
 	public static List condition1(ConditionDto dto) {
 		List list = null;
 		
@@ -100,14 +100,14 @@ public class BookManager {
 		
 		return list;
 	}
-	//조건검색
+	//조건검색2
 	public static List condition2(ConditionDto dto) {
 		List list = null;
 		SqlSession session = sqlFactory.openSession();//�꽭�뀡蹂꾨줈 sql �옉�뾽�븷�닔 �엳�룄濡� �뿴�뼱�넃�뒗寃�
 		list = session.selectList("condition2", dto);
 		return list;
 	}
-	//조건검색
+	//조건검색3
 	public static List condition3(ConditionDto dto) {
 		List list = null;
 		SqlSession session = sqlFactory.openSession();//�꽭�뀡蹂꾨줈 sql �옉�뾽�븷�닔 �엳�룄濡� �뿴�뼱�넃�뒗寃�
@@ -116,14 +116,18 @@ public class BookManager {
 	}
 	
 	//책 대여
-	public static void rentalbook(BookDto dto, RentalInfoDto infodto) {
+	public static void rentalbook(BookDto dto, RentalInfoDto infodto, int book_num) {
 		System.out.println("rentalmanager:"+infodto.getMember_email());
+		String member_email = infodto.getMember_email();
+		System.out.println("책 대여 제한 걸기:"+member_email);
 		System.out.println("rentalmanager:"+infodto.getBook_num());
 		SqlSession session = sqlFactory.openSession();
 		try{
 		System.out.println("rentalmanager:"+dto.getBook_num());
 		session.update("rentalbook", dto);
 		session.insert("rentalinfo", infodto);
+		session.update("bookresend", book_num);
+		session.update("addrental", member_email);
 		session.commit();
 		}
 		catch(SqlSessionException err){
@@ -133,6 +137,8 @@ public class BookManager {
 		session.close();
 		}
 	}
+	
+	//사용자가 책 대여한 리스트
 	public static List mylist(BookandRentalDto joindto) {
 		List list = null;
 		SqlSession session = sqlFactory.openSession();
@@ -141,12 +147,14 @@ public class BookManager {
 	}
 	
 	//책 반납
-	public static void bookreturn(int book_num) {
+	public static void bookreturn(int book_num, String member_email) {
 		SqlSession session = sqlFactory.openSession();
+		System.out.println("반납 매니저 반납확인 이메일:"+member_email);
 		System.out.println("managerag :"+ book_num);
 		try{
 		session.update("bookreturnupdate", book_num);
 		session.delete("bookreturn", book_num);
+		session.update("subrental", member_email);
 		session.commit();
 		}
 		catch(SqlSessionException err){
@@ -158,14 +166,16 @@ public class BookManager {
 	}
 	
 	//책예약
-	public static void bookres(int book_num, BookResDto resdto) {
+	public static void bookres(int book_num, BookResDto resdto,String member_email) {
 
 		System.out.println("resmanager:"+resdto.getMember_email());
 		System.out.println("resmanager:"+resdto.getBook_num());
+		System.out.println("예약 이메일 제한 걸기:"+member_email);
 		SqlSession session = sqlFactory.openSession();
 		try{
 			session.insert("resinfo", resdto);
 			session.update("bookresupdate", book_num);
+			session.update("addres", member_email);
 			session.commit();
 			}
 			catch(SqlSessionException err){
@@ -190,12 +200,13 @@ public class BookManager {
 		
 	}
 	
-	public static void bookrescancel(int book_num) {
+	public static void bookrescancel(int book_num,String member_email) {
 		
 		SqlSession session = sqlFactory.openSession();
 		try{
 		session.delete("bookrescancel", book_num);
 		session.update("bookresend", book_num);
+		session.update("subres", member_email);
 		session.commit();
 		}
 		catch(SqlSessionException err){
@@ -205,11 +216,11 @@ public class BookManager {
 		session.close();
 		}
 	}
-	public static void bookrestodaycancel(int book_num) {
+	public static void bookrestodaycancel() {
 		SqlSession session = sqlFactory.openSession();
 		try{
-		session.delete("bookrescancel", book_num);
-		session.update("bookresend", book_num);
+		session.update("bookmanagerresend");
+		session.delete("bookmanagerrescancel");
 		session.commit();
 		}
 		catch(SqlSessionException err){
@@ -226,6 +237,33 @@ public class BookManager {
 		SqlSession session = sqlFactory.openSession();
 		list = session.selectList("rentallist");
 		return list;
+	}
+	public static List resbooklist() {
+		List list = null;
+
+		SqlSession session = sqlFactory.openSession();
+		list = session.selectList("resbooklist");
+		return list;
+	}
+	public static void resrentalbook(BookDto dto, RentalInfoDto infodto, int book_num) {
+		String member_email = infodto.getMember_email();
+		SqlSession session = sqlFactory.openSession();
+		try{
+		System.out.println("rentalmanager:"+dto.getBook_num());
+		session.update("rentalbook", dto);
+		session.insert("rentalinfo", infodto);
+		session.update("bookresend", book_num);
+		session.update("addrental", member_email);
+		session.update("subres", member_email);
+		session.commit();
+		}
+		catch(SqlSessionException err){
+			System.out.println("rentalbook:"+ err);
+		}
+		finally{
+		session.close();
+		}
+		
 	}
 	
 }

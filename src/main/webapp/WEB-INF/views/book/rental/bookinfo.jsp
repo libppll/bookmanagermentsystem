@@ -4,9 +4,28 @@
 <head>
 <title>Insert title here</title>
 <script type="text/javascript">
+
 	function Rental(num){
-		alert("aaa")
+		var ren = document.getElementById("rental").value
+		
+		if(ren <= 4){
+		alert(ren)
+		alert("대여처리한다.")
 		location.href="rental.book?book_num="+num;
+		}
+		else{
+			alert("대여가능 권수가 넘었습니다. 반납 후 빌려주시길 바랍니다.")
+		}
+	}
+	function Res(num){
+		var res = document.getElementById("rental").value
+		if(res < 3){
+		alert("예약 처리한다.")
+		location.href="res.book?book_num="+num;
+		}
+		else{
+			alert("예약가능 권수가 넘었습니다.")
+		}
 	}
 	
 </script>
@@ -58,7 +77,7 @@
 		
 		
 		<br/><br/><br/><br/><br/>
-		<form action="res.book" method="get">
+		
 		<table border="1">
 		<tr>
 		<td>순번</td><td>등록번호</td><td>제목</td>
@@ -73,8 +92,9 @@
 				<td>${dto.book_label}</td>
 				<td>${dto.book_author}</td>
 				<td>${dto.book_isbn}</td>
-				<input type="hidden" value="${name}" name="member_email"/>
-				<input type="hidden" value="${dto.book_num}" name="book_num"/>
+				<input type="hidden" id="book_title" value="${dto.getBook_title()}">
+				<input type="hidden" id="rental" value="${dto.getRentallimit()}">
+				<input type="hidden" id="res" value="${dto.getReslimit()}">
 				<c:choose>
 				<c:when test="${dto.book_status eq true}">
 					<td>대여중</td>
@@ -91,12 +111,12 @@
 					<td>예약중</td>
 				</c:when>
 				<c:when test="${name!=null && dto.book_res eq false }">
-				<td><input type="submit" value="예약"/></td>
+				<td><input type="button" value="예약" onclick="Res(${dto.book_num})"/></td>
 				</c:when>
 				</c:choose>
 			</tr>
+			
 		</c:forEach>
 		</table>
-		</form>
 </body>
 </html>

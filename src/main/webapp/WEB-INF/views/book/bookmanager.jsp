@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="resbookcancel.book" method="get">
+<h3>대여 책 리스트</h3>
 <table border="1">
 	 
 	<tr>
@@ -20,13 +20,34 @@
 		<td>${dto.book_title}</td>
 		<td>${dto.renbtal_returndate}</td>
 		<td>${dto.member_email}</td>
+		<input type="hidden" value="${dto.book_num}"/> 
+	</tr>
+	</c:forEach>
+</table>
+
+
+<h3>예약 책 리스트</h3>
+<form action="resbookcancel.book" method="get">
+<table border="1">
+	 
+	<tr>
+		<td>순서</td><td>등록번호</td><td>제목</td><td>책 예약 마지막날</td><td>대여자</td>
+	</tr>
+	<c:forEach items="${lists}" var="dto" varStatus="status">
+	<tr>
+		<td>${status.count }</td>
+		<td>${dto.book_num}</td>
+		<td>${dto.book_title}</td>
+		<td>${dto.res_end}</td>
+		<td>${dto.member_email}</td>
 		
 	</tr>
 	</c:forEach>
 </table>
-<input type="submit" value="예약취소" />
+<input type="submit" value="예약취소" /> 
 
 </form>
+
 
 </body>
 </html>

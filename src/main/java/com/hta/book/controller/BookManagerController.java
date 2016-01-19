@@ -23,8 +23,10 @@ public class BookManagerController {
 		try {
 				
 			List list = bookService.rantalinfoList();
-				
+			List lists = bookService.resbookList();
+			
 			mav.addObject("list", list);
+			mav.addObject("lists", lists);
 		} catch (Exception err) {
 			System.out.println("ListController:pageHandler():" + err);
 		}

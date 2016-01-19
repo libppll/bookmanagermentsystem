@@ -10,8 +10,34 @@ public class Member {
 	   private String member_phonenumber;  
 	   private String member_password;     
 	   private String member_address;      
-
+	   private int rentallimit; 
+	   private int reslimit;
+	   
 	
+	public int getRentallimit() {
+		return rentallimit;
+	}
+
+
+
+	public void setRentallimit(int rentallimit) {
+		this.rentallimit = rentallimit;
+	}
+
+
+
+	public int getReslimit() {
+		return reslimit;
+	}
+
+
+
+	public void setReslimit(int reslimit) {
+		this.reslimit = reslimit;
+	}
+
+
+
 	public Member(){
 		
 	}

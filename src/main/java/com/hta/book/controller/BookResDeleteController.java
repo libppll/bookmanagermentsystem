@@ -24,15 +24,10 @@ public class BookResDeleteController {
 	
 	@RequestMapping(value="/resbookcancel.book", method=RequestMethod.GET)
 	public String reshandle(){
-		return null;
+	
+		bookService.bookrestodaycancel();
 		
+		return "redirect:manager.book";
 
-	
-	
-		
-		
-		
 	}
-	
-	
 }

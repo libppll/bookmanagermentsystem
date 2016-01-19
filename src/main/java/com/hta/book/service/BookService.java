@@ -36,23 +36,28 @@ public interface BookService {
 		//조건검색3
 		public List condition3(ConditionDto dto);
 		//책 대여
-		public void bookrental(BookDto dto, RentalInfoDto infodto);
-		
+		public void bookrental(BookDto dto, RentalInfoDto infodto, int book_num);
+		//책 대여 리스트
 		public List mylist(BookandRentalDto joindto);
-		
-		public void bookreturn(int book_num);
-		
-		public void bookres(int book_num, BookResDto resdto);
-		
+		//책 반납
+		public void bookreturn(int book_num,String member_email);
+		//책 예약
+		public void bookres(int book_num, BookResDto resdto,String member_email);
+		//책 예약 리스트
 		public List myreslist(BookandRentalDto joindto);
-		
+		//책 연장
 		public void bookextension(int book_num);
-		
-		public void bookrescancel(int book_num);
-		
-		public void bookrestodaycancel(int book_num);
-		
+		//책 예약 취소
+		public void bookrescancel(int book_num,String member_email);
+		//관리자 예약 취소
+		public void bookrestodaycancel();
+		//관리자 대여 리스트
 		public List rantalinfoList();
+		//관리자 예약 리스트
+		public List resbookList();
+		//사용자가 책 예약 후에 대여
+		public void bookresrental(BookDto dto, RentalInfoDto infodto, int book_num);
+		
 
 		
 		

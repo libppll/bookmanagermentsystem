@@ -31,10 +31,10 @@ public class MemberManager {
 	}
 	
 	
-	public static Member selectByEmail(String email){//濡쒓렇�씤�븷 �듅�젙 email
+	public static Member selectByEmail(String email){
 		SqlSession session = sqlFactory.openSession();
-		Member dto = session.selectOne("selectByEmail", email);//�듅�젙 email媛믪쓣 DB�� 鍮꾧탳�븯湲� �쐞�빐�꽌 �꽭�뀡�씠 ���옣�븯�뿬 dto�뿉 �꽆湲대떎.
-		return dto; //Member 利� dto濡� �꽆寃⑥쨾�빞�븳�떎.
+		Member dto = session.selectOne("selectByEmail", email);
+		return dto; 
 	}
 
 

@@ -28,22 +28,24 @@ public class RentalBookController {
 	}
 	
 	@RequestMapping("/rental.book")
-	public  ModelAndView rentalhandle(@ModelAttribute RentalInfoDto infodto, BookDto dto, BookandRentalDto joindto, HttpSession session, HttpServletRequest req){
+	public  ModelAndView rentalhandle(@ModelAttribute RentalInfoDto infodto, BookDto dto,int book_num, BookandRentalDto joindto, HttpSession session, HttpServletRequest req){
 		ModelAndView mav = new ModelAndView("redirect:myrental.book");
-		String booknum = req.getParameter("book_num");
-		int book_num = Integer.parseInt(booknum);
+		String book_title = req.getParameter("book_title");
 		System.out.println("rentalcontroller:"+book_num);
 		String member_email = (String)session.getAttribute("email");
 		session.setAttribute("member_email", member_email); //session에 이메일값 저장.
 		infodto.setMember_email(member_email);
 		infodto.setBook_num(book_num);
-		bookService.bookrental(dto, infodto);
+		bookService.bookrental(dto, infodto,book_num);
 
 		
 		return mav;
 		
 		
 	}
+	
+	
+	
 	
 	@RequestMapping("/myrental.book")
 	public ModelAndView mylist(@ModelAttribute BookandRentalDto joindto, HttpSession session, HttpServletRequest req){

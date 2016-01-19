@@ -26,10 +26,24 @@ public class BookandRentalDto {
 	private int res_num; //예약번호
 	private String res_date; //예약일 		
     private String res_end;// 예약 종료일
+    private int rentallimit; 
+    private int reslimit;
     
-	
     
     
+    
+	public int getRentallimit() {
+		return rentallimit;
+	}
+	public void setRentallimit(int rentallimit) {
+		this.rentallimit = rentallimit;
+	}
+	public int getReslimit() {
+		return reslimit;
+	}
+	public void setReslimit(int reslimit) {
+		this.reslimit = reslimit;
+	}
 	public String getRes_date() {
 		return res_date;
 	}

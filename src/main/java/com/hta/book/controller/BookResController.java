@@ -31,7 +31,7 @@ public class BookResController {
 		System.out.println("¿¹¾à:"+member_email);
 		resdto.setMember_email(member_email);
 		resdto.setBook_num(book_num);
-		bookService.bookres(book_num, resdto);
+		bookService.bookres(book_num, resdto, member_email);
 	
 		return "redirect:myrental.book";
 		

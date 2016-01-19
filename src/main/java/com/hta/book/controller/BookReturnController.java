@@ -1,5 +1,7 @@
 package com.hta.book.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +21,11 @@ public class BookReturnController {
 	}
 	
 	@RequestMapping(value="/return.book", method=RequestMethod.GET)
-	public String deletehandle(int book_num){
+	public String deletehandle(int book_num, HttpSession session){
+		String member_email = (String)session.getAttribute("email");
+		System.out.println("반납 확인 이메일:"+member_email);
 		System.out.println("booknum:"+ book_num);
-		bookService.bookreturn(book_num);
+		bookService.bookreturn(book_num,member_email);
 	
 		return "redirect:myrental.book";
 		
