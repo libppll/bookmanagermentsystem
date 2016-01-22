@@ -26,32 +26,31 @@ public class BookResExtensionController {
 	
 	@RequestMapping("/extension.book")
 	public String extensionhandle(int book_num){
-		System.out.println(book_num);
+		
 		bookService.bookextension(book_num);
 	
 		return "redirect:myrental.book";
 		
 	}
 	
-	//¿¹¾à Ãë¼ÒÃ³¸®
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 	@RequestMapping("/rescan.book")
 	public String reshandle(int book_num, HttpSession session){
-		System.out.println("¿¹¾àÃë¼ÒÃ³¸®:"+book_num);
-		System.out.println("¿¹¾àÃë¼ÒÃ³¸®ÀÌ¸ÞÀÏ:");
+		
 		String member_email = (String)session.getAttribute("email");
 		bookService.bookrescancel(book_num, member_email);
 	
 		return "redirect:myrental.book";
 		
 	}
-	//¿¹¾à ÈÄ ´ë¿©Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ë¿©Ã³ï¿½ï¿½
 	@RequestMapping("/resrental.book")
 	public  ModelAndView resrentalhandle(@ModelAttribute RentalInfoDto infodto, BookDto dto,int book_num, BookandRentalDto joindto, HttpSession session, HttpServletRequest req){
 		ModelAndView mav = new ModelAndView("redirect:myrental.book");
 	
-		System.out.println("rentalcontroller:"+book_num);
+		
 		String member_email = (String)session.getAttribute("email");
-		session.setAttribute("member_email", member_email); //session¿¡ ÀÌ¸ÞÀÏ°ª ÀúÀå.
+		session.setAttribute("member_email", member_email); //sessionï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		infodto.setMember_email(member_email);
 		infodto.setBook_num(book_num);
 		bookService.bookresrental(dto, infodto,book_num);

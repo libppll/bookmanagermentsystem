@@ -15,47 +15,47 @@ import com.hta.book.repository.RentalInfoDto;
 
 public interface BookService {
 
-		//Ã¥ Ãß°¡
+		//Ã¥ ï¿½ß°ï¿½
 		public void bookinput(BookDto dto) throws SQLException;
-		//ÀüÃ¼ Ãâ·Â¸®½ºÆ®
+		//ï¿½ï¿½Ã¼ ï¿½ï¿½Â¸ï¿½ï¿½ï¿½Æ®
 		public List getList() throws SQLException;
-		//Ã¥º¸±â
+		//Ã¥ï¿½ï¿½ï¿½ï¿½
 		public BookDto findBynum(int book_num);
-		//¿À´Ã³¯Â¥¸¸ Ãâ·Â
+		//ï¿½ï¿½ï¿½Ã³ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½
 		public List todayList() throws SQLException;
-		//»èÁ¦
+		//ï¿½ï¿½ï¿½ï¿½
 		public void bookdelete(int book_num);
-		//¼öÁ¤
+		//ï¿½ï¿½ï¿½ï¿½
 		public void updatebook(BookDto dto);
-		//Á¶°Ç°Ë»ö
+		//ï¿½ï¿½ï¿½Ç°Ë»ï¿½
 		public List samelist(String book_title);
-		//Á¶°Ç°Ë»ö1
+		//ï¿½ï¿½ï¿½Ç°Ë»ï¿½1
 		public List condition1(ConditionDto dto);
-		//Á¶°Ç°Ë»ö2
+		//ï¿½ï¿½ï¿½Ç°Ë»ï¿½2
 		public List condition2(ConditionDto dto);
-		//Á¶°Ç°Ë»ö3
+		//ï¿½ï¿½ï¿½Ç°Ë»ï¿½3
 		public List condition3(ConditionDto dto);
-		//Ã¥ ´ë¿©
+		//Ã¥ ï¿½ë¿©
 		public void bookrental(BookDto dto, RentalInfoDto infodto, int book_num);
-		//Ã¥ ´ë¿© ¸®½ºÆ®
+		//Ã¥ ï¿½ë¿© ï¿½ï¿½ï¿½ï¿½Æ®
 		public List mylist(BookandRentalDto joindto);
-		//Ã¥ ¹Ý³³
+		//Ã¥ ï¿½Ý³ï¿½
 		public void bookreturn(int book_num,String member_email);
-		//Ã¥ ¿¹¾à
+		//Ã¥ ï¿½ï¿½ï¿½ï¿½
 		public void bookres(int book_num, BookResDto resdto,String member_email);
-		//Ã¥ ¿¹¾à ¸®½ºÆ®
+		//Ã¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		public List myreslist(BookandRentalDto joindto);
-		//Ã¥ ¿¬Àå
+		//Ã¥ ï¿½ï¿½ï¿½ï¿½
 		public void bookextension(int book_num);
-		//Ã¥ ¿¹¾à Ãë¼Ò
+		//Ã¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		public void bookrescancel(int book_num,String member_email);
-		//°ü¸®ÀÚ ¿¹¾à Ãë¼Ò
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		public void bookrestodaycancel();
-		//°ü¸®ÀÚ ´ë¿© ¸®½ºÆ®
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ë¿© ï¿½ï¿½ï¿½ï¿½Æ®
 		public List rantalinfoList();
-		//°ü¸®ÀÚ ¿¹¾à ¸®½ºÆ®
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		public List resbookList();
-		//»ç¿ëÀÚ°¡ Ã¥ ¿¹¾à ÈÄ¿¡ ´ë¿©
+		//ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ Ã¥ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ë¿©
 		public void bookresrental(BookDto dto, RentalInfoDto infodto, int book_num);
 		
 

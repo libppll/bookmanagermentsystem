@@ -1,27 +1,40 @@
 package com.hta.book.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
+import com.hta.book.bookimgdao.BookImgDao;
 import com.hta.book.repository.BookDto;
 import com.hta.book.service.BookService;
+
+
+
 
 @Controller
 public class BookInputController {
 	private BookService bookService;
-	
+
 	
 	public void setBookService(BookService bookService) {
 		this.bookService = bookService;
 	}
 
-	//book ÀúÀåÆäÀÌÁö
+	//book ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/bookinput", method=RequestMethod.GET)
 	public String bookinhandle(){
 		
@@ -29,23 +42,43 @@ public class BookInputController {
 		
 	}
 	
-	//book ÀúÀå
+	//book ì¶”ê°€ ë©”ì„œë“œ
 	@RequestMapping(value="/bookinput", method=RequestMethod.POST)
-	public String booksubmit(@ModelAttribute BookDto dto) {
-		try {
+	public String booksubmit(@ModelAttribute BookDto dto, HttpServletRequest req) throws IOException {
+		try{
+			MultipartFile file = dto.getUpFile();//uploadDto.getUpFile()ì˜ typeì´ MultipartFileì´ë¯€ë¡œ MultipartFileë¡œ ë°›ì•„ì¤€ë‹¤.
+			/*
+			String path = 
+					WebUtils.getRealPath(req.getSession().getServletContext(), "/upload");//WebUtils.getRealPathëŠ” ì‹¤ì œ ê²½ë¡œë¥¼ ì „ë‹¬í•´ì¤€ë‹¤. ì¦‰, uploadí´ë”ì˜ ìœ„ì¹˜ë¥¼ ì•Œì•„ ë‚¼ìˆ˜ ìˆë‹¤.
+					*/
 			
-			bookService.bookinput(dto);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//String path = "C:/Users/JHTA/Documents/workspace-sts-3.7.2.RELEASE/bookmanagermentsystem-rantal/src/main/webapp/upload";
+			String path = req.getSession().getServletContext().getRealPath("/upload");
+			System.out.println("íŒŒì¼ê²½ë¡œ:"+path);
+			System.out.println("al"+file);
+			System.out.println("íŒŒì¼ì´ë¦„:"+file.getOriginalFilename());
+			BookImgDao uploadDao = new BookImgDao();
+			String rootpath = "/upload/";
+			uploadDao.writeFile(file, path, file.getOriginalFilename());
+			dto.setBook_img(rootpath);
+			dto.setBook_imgname(file.getOriginalFilename());
 			
+            try {
+				bookService.bookinput(dto);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } 
+		catch (IOException e) {
+                e.printStackTrace();
 		}
 		
-		return "redirect:bookinput";//Ã¥ Ãß°¡ ÇÒ°Ô ¸¹À» °æ¿ì ´ëºñÇØ¼­ ´Ù½Ã ¸®¼Â µÈ´Ù.
+		return "redirect:bookinput";//Ã¥ ï¿½ß°ï¿½ ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
 		
 	}
 	
-	//ÀüÃ¼ ¸ñ·Ï º¸¿©ÁÖ±â 
+	//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ 
 	@RequestMapping("/success.book")
 	public ModelAndView pageHandler(){
 		ModelAndView mav = new ModelAndView("successbook");
@@ -62,7 +95,7 @@ public class BookInputController {
 		
 	}
 	
-	//¿À´Ã µî·ÏÇÑ Ã¥ ¸ñ·Ï º¸¿©ÁÖ±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	@RequestMapping("/today.book")
 	public ModelAndView pageHandler1(){
 		ModelAndView mav = new ModelAndView("todaybook");

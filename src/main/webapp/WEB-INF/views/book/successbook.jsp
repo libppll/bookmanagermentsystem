@@ -22,7 +22,9 @@
 		<td>선택</td><td>등록번호</td><td>제목</td><td>출판사</td><td>저자</td><td>ISBN</td><td>입고날짜</td>
 	</tr>
 	<c:forEach items="${list}" var="dto" varStatus="status">
+		
 	<tr>
+
 		<td><input type="checkbox" name="multbook" value=${dto.book_num }/></td>
 		<td>${dto.book_num}</td>
 		<td><a href="bookupdate?book_num=${dto.book_num}">${dto.book_title}</td>

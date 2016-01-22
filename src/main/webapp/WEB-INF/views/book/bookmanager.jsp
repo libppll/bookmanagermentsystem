@@ -11,7 +11,10 @@
 <table border="1">
 	 
 	<tr>
-		<td>순서</td><td>등록번호</td><td>제목</td><td>책 반납일</td><td>대여자</td>
+		<td>순서</td><td>등록번호</td>
+		<td>제목</td><td>책 반납일</td>
+		<td>대여자</td>
+		<td>전화번호</td>
 	</tr>
 	<c:forEach items="${list}" var="dto" varStatus="status">
 	<tr>
@@ -20,6 +23,7 @@
 		<td>${dto.book_title}</td>
 		<td>${dto.renbtal_returndate}</td>
 		<td>${dto.member_email}</td>
+		<td>${dto.member_phonenumber }</td>
 		<input type="hidden" value="${dto.book_num}"/> 
 	</tr>
 	</c:forEach>
@@ -31,7 +35,7 @@
 <table border="1">
 	 
 	<tr>
-		<td>순서</td><td>등록번호</td><td>제목</td><td>책 예약 마지막날</td><td>대여자</td>
+		<td>순서</td><td>등록번호</td><td>제목</td><td>책 예약 마지막날</td><td>예약자</td>
 	</tr>
 	<c:forEach items="${lists}" var="dto" varStatus="status">
 	<tr>

@@ -23,123 +23,123 @@ public class BookServiceImpl implements BookService {
 
 	public void bookinput(BookDto dto) throws SQLException {
 		BookManager.bookinput(dto);
-		// TODO Auto-generated method stub
+		
 	
 		
 	}
 	
-	// Ã¥ ¸®½ºÆ® ÀüÃ¼ º¸¿©ÁÖ±â
+	// Ã¥ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	public List getList() throws SQLException{
 		return BookManager.getList();
 		
 	}
 	
-	// ±Û ÀÔ°í³¯Â¥ ¿À´Ã²¨¸¸ º¸¿©ÁÖ±â
+	// ï¿½ï¿½ ï¿½Ô°ï¿½Â¥ ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	public List todayList() throws SQLException{
 		return BookManager.todayList();
 		
 	}
 	
-	//±Û º¸±â
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public BookDto findBynum(int book_num) {
 		BookDto dto = new BookManager().finBynum(book_num);
 		return dto;
 	}
 	
-	//±Û»èÁ¦
+	//ï¿½Û»ï¿½ï¿½ï¿½
 	public void bookdelete(int book_num) {
 	
 		BookManager.deletebook(book_num);
 	}
 	
-	//±Û ¼öÁ¤
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void updatebook(BookDto dto) {
 		BookManager.updatebook(dto);
 		
 	}
 
-	//°°Àº Ã¥Á¦¸ñÀº ¸®½ºÆ®¿¡ ÇÏ³ª¸¸ ³ª¿Àµµ·Ï ÇÏ´Â °Í Ãâ·Â
+	//ï¿½ï¿½ï¿½ï¿½ Ã¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List samelist(String book_title) {
 		return BookManager.samelist(book_title);
 	}
 	
-	//Ã¥ Á¶°Ç°Ë»ö
+	//Ã¥ ï¿½ï¿½ï¿½Ç°Ë»ï¿½
 	public List condition1(ConditionDto dto) {
 		return BookManager.condition1(dto);
 	}
 	
-	//Ã¥ Á¶°Ç°Ë»ö
+	//Ã¥ ï¿½ï¿½ï¿½Ç°Ë»ï¿½
 	public List condition2(ConditionDto dto) {
 		return BookManager.condition2(dto);
 	}
 	
-	//Ã¥ Á¶°Ç°Ë»ö
+	//Ã¥ ï¿½ï¿½ï¿½Ç°Ë»ï¿½
 	public List condition3(ConditionDto dto) {
 		return BookManager.condition3(dto);
 	}
 	
-	//»ç¿ëÀÚ Ã¥ ´ë¿©
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½ë¿©
 	public void bookrental(BookDto dto,RentalInfoDto infodto,int book_num) {
 	
 		BookManager.rentalbook(dto, infodto, book_num);
 		
 	}
 	
-	//»ç¿ëÀÚ Ã¥ ´ë¿© ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½ë¿© ï¿½ï¿½ï¿½ï¿½Æ®
 	public List mylist( BookandRentalDto joindto) {
 		// TODO Auto-generated method stub
 		return BookManager.mylist(joindto);
 	}
 	
-	//»ç¿ëÀÚ Ã¥ ¹Ý³³ 
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½Ý³ï¿½ 
 	public void bookreturn(int book_num, String member_email) {
 		BookManager.bookreturn(book_num, member_email);
 		
 	}
 	
-	//»ç¿ëÀÚ Ã¥ ¿¹¾à
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½ï¿½ï¿½ï¿½
 	public void bookres(int book_num, BookResDto resdto,String member_email) {
 		BookManager.bookres(book_num, resdto,member_email);
 		
 	}
 	
-	//»ç¿ëÀÚ Ã¥ ¿¹¾à ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	public List myreslist(BookandRentalDto joindto) {
 		// TODO Auto-generated method stub
 		return BookManager.myreslist(joindto);
 	}
 	
-	//Ã¥ ¿¬Àå 
+	//Ã¥ ï¿½ï¿½ï¿½ï¿½ 
 	public void bookextension(int book_num) {
 		BookManager.bookextension(book_num);
 		
 	}
 	
-	//Ã¥ ¿¹¾à Ãë¼Ò
+	//Ã¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public void bookrescancel(int book_num,String member_email) {
 		BookManager.bookrescancel(book_num,member_email);
 		
 	}
 	
-	//°ü¸®ÀÚ ¿¹¾à Ãë¼Ò 
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 	public void bookrestodaycancel() {
 		BookManager.bookrestodaycancel();
 		
 	}
 	
-	//°ü¸®ÀÚ¿¡°Ô º¸¿©Áö´Â ÀüÃ¼ ´ë¿© Ã¥ ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ë¿© Ã¥ ï¿½ï¿½ï¿½ï¿½Æ®
 	public List rantalinfoList(){
 		// TODO Auto-generated method stub
 		return BookManager.rantalinfolist();
 	}
 	
-	//°ü¸®ÀÚ¿¡°Ô º¸¿©Áö´Â ÀüÃ¼ ¿¹¾à Ã¥ ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½ï¿½ï¿½ï¿½Æ®
 	public List resbookList() {
 		// TODO Auto-generated method stub
 		return BookManager.resbooklist();
 	}
 	
-	//»ç¿ëÀÚ°¡ ¿¹¾à ÈÄ¿¡ Ã¥À» ´ë¿©
+	//ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ Ã¥ï¿½ï¿½ ï¿½ë¿©
 	public void bookresrental(BookDto dto, RentalInfoDto infodto, int book_num) {
 		BookManager.resrentalbook(dto, infodto, book_num);
 		

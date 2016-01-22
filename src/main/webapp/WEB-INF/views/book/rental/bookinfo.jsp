@@ -22,10 +22,9 @@
 		var disbook = document.getElementById("disbook").value
 		var resbook = document.getElementById("resbook").value
 		
-		alert("이미 예약한 책:"+resbook)
+	
 		if(disbook ==  0 && resbook == 0){
-		alert("예약 처리한다.")
-		location.href="res.book?book_num="+num;
+			location.href="res.book?book_num="+num;
 		}
 		else if(disbook == 1){
 			alert("책을 이미 빌렸습니다.")
@@ -40,7 +39,13 @@
 </head>
 <body>
 
-	<p>	
+
+<img width="100" height="100" src="upload/${dto.getBook_img()}"> 
+<img src="upload/images.jpg">
+<h2>파일이름: ${dto.getBook_img()}</h2>
+
+
+		<p>	
 			<label>
 				도서명 : <br/>
 				<input type="text" name="book_title" id="book_title" value="${dto.getBook_title()}"/>

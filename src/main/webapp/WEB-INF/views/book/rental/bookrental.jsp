@@ -14,7 +14,8 @@
 <table border="1" class="rental">
 	 
 	<tr>
-		<td>선택</td><td>등록번호</td><td>제목</td><td>출판사</td><td>저자</td><td>ISBN</td><td>입고날짜</td>
+		<td>선택</td><td>등록번호</td><td>제목</td><td>출판사</td><td>저자</td>
+		<td>ISBN</td><td>장르</td><td>입고날짜</td>
 	</tr>
 	<c:forEach items="${list}" var="dto" varStatus="status">
 	<tr>
@@ -24,6 +25,7 @@
 		<td>${dto.book_label}</td>
 		<td>${dto.book_author}</td>
 		<td>${dto.book_isbn}</td>
+		<td>${dto.book_genre}</td>
 		<td>${dto.book_imdate }</td>
 	</tr>
 	</c:forEach>
